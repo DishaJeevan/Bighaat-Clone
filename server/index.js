@@ -13,10 +13,23 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 app.use(express.json());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://bighaat-clone-website.onrender.com"
+];
+
 app.use(cors({
-  origin: "https://bighaat-clone-website.onrender.com",
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS not allowed"));
+    }
+  },
   credentials: true
 }));
+
+app.options("*", cors());
 
 const multer=require("multer");
 const path=require("path");
