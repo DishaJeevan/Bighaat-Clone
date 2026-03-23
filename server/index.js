@@ -29,8 +29,6 @@ app.use(cors({
   credentials: true
 }));
 
-app.options("/*", cors());
-
 const multer=require("multer");
 const path=require("path");
 const storage=multer.diskStorage({
