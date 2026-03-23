@@ -29,7 +29,7 @@ app.use(cors({
   credentials: true
 }));
 
-app.options("*", cors());
+app.options("/*", cors());
 
 const multer=require("multer");
 const path=require("path");
